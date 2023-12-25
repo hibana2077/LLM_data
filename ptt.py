@@ -1,8 +1,8 @@
 '''
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-12-25 14:47:25
-LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-12-25 18:03:53
+LastEditors: hibana2077 hibana2077@gmail.com
+LastEditTime: 2023-12-25 21:36:28
 FilePath: /LLM_data/ptt.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -11,7 +11,11 @@ import json
 import pandas as pd
 from bs4 import BeautifulSoup
 
-page_urls = ["https://www.ptt.cc/bbs/C_Chat/index17527.html","https://www.ptt.cc/bbs/C_Chat/index17528.html","https://www.ptt.cc/bbs/C_Chat/index17529.html","https://www.ptt.cc/bbs/C_Chat/index17530.html","https://www.ptt.cc/bbs/C_Chat/index17531.html","https://www.ptt.cc/bbs/C_Chat/index17532.html"]
+url_template = "https://www.ptt.cc/bbs/C_Chat/index{}.html"
+FROM = 17500
+TO = 17530
+
+page_urls = [url_template.format(i) for i in range(FROM, TO)]
 path = "https://www.ptt.cc/bbs/C_Chat/index.html"
 data = {
     "prompt": [],
@@ -44,7 +48,6 @@ for url in page_urls:
 
 # CSV
 df = pd.DataFrame(data)
-print(len(df))
 # df.dropna(inplace=True)
 df.to_csv('ptt.csv', index=False)
 
