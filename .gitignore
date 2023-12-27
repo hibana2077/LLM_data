@@ -1,2 +1,4 @@
 .bin
 pytorch_model.bin
+ptt/ptt.csv
+former/html2json.csv
